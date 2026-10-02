@@ -25,17 +25,19 @@ export default function GuestListPage() {
   const getGuestUrl = (guestName) =>
     `${window.location.origin}/undanganidindanfitra?to=${encodeURIComponent(guestName.trim())}`;
 
-  const getWhatsAppMessage = (guest) => {
-    const link = getGuestUrl(guest.name);
-    const guestLabel = `${guest.greeting || 'Bapak/Ibu/Saudara/i'} ${guest.name}`;
-    const groomName = weddingData.groom?.fullName || 'Raden Arya Bagaskara';
-    const groomNick = weddingData.groom?.nickName || 'Arya';
-    const brideName = weddingData.bride?.fullName || 'Dyah Ayu Sekar Kedaton';
-    const brideNick = weddingData.bride?.nickName || 'Sekar';
-    const weddingDate = weddingData.wedding?.dateFormatted || 'Jumat Kliwon, 20 November 2026';
-    const venue = weddingData.events?.[0]?.venue || 'Pendopo Ageng';
-    return `Kepada Yth.\n${guestLabel}\n\nAssalamu'alaikum Warahmatullahi Wabarakatuh / Rahayu.\n\nKanthi nyuwun lumunturing sih wilasa Gusti Ingkang Maha Agung, tanpa ngirangi raos kurmat, lumantar serat punika kepareng kula sakaluwarga ngaturi rawuh panjenengan ing adicara Pawiwahan putra-putri kawula:\n\n🤵 ${groomName} (${groomNick})\n👰 ${brideName} (${brideNick})\n\n📅 Tanggal: ${weddingDate}\n📍 Tempat: ${venue}\n\nTautan Undangan & Konfirmasi Kehadiran:\n👉 ${link}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir serta memberikan berkah doa restu.\n\nMatur nuwun sanget.\nWassalamu'alaikum Warahmatullahi Wabarakatuh.`;
-  };
+const getWhatsAppMessage = (guest) => {
+  const link = getGuestUrl(guest.name);
+  const guestLabel = `${guest.greeting || 'Bapak/Ibu/Saudara/i'} ${guest.name}`;
+  const groomName = weddingData.groom?.fullName || 'M. Mukhyidin, S.Pd.';
+  const groomNick = weddingData.groom?.nickName || 'Idin';
+  const brideName = weddingData.bride?.fullName || 'Lidya Fitra, S.Pd.';
+  const brideNick = weddingData.bride?.nickName || 'fITRA';
+  const weddingDate = weddingData.wedding?.dateFormatted || 'kamis, 18 Oktober 2026';
+  const venue = weddingData.events?.[0]?.venue || 'Ds. Kentong RT.01 / RW.03 Kec. Glagah, Kab. Lamongan Jawa Timur';
+
+  return `Kepada Yth.\n${guestLabel}\n\nAssalamu'alaikum Warahmatullahi Wabarakatuh.\n\nDengan penuh rasa syukur ke hadirat Allah SWT atas limpahan rahmat dan karunia-Nya, kami bermaksud menyampaikan kabar bahagia sekaligus mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan putra-putri kami:\n\n🤵 ${groomName} (${groomNick})\n👰 ${brideName} (${brideNick})\n\nAcara ini insyaAllah akan dilaksanakan pada:\n📅 Tanggal: ${weddingDate}\n📍 Tempat: ${venue}\n\nMelalui undangan ini, kami berharap kehadiran Bapak/Ibu/Saudara/i dapat memberikan doa restu, serta menjadi bagian dari kebahagiaan kami dalam membangun rumah tangga yang sakinah, mawaddah, dan rahmah.\n\nTautan Undangan & Konfirmasi Kehadiran:\n👉 ${link}\n\nMerupakan kehormatan dan kebahagiaan besar bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu dan menyaksikan momen bersejarah ini.\n\nAtas perhatian, doa, dan kehadiran Bapak/Ibu/Saudara/i, kami sekeluarga mengucapkan terima kasih yang sebesar-besarnya.\n\nWassalamu'alaikum Warahmatullahi Wabarakatuh.`;
+};
+
 
   const handleAddGuest = (e) => {
     e.preventDefault();
