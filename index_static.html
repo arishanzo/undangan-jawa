@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Pawiwahan Ageng - Undangan Pernikahan Adat Jawa</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/gunungan.svg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Desktop Backdrop Pattern -->
+  <div class="desktop-backdrop"></div>
+
+  <!-- FLOATING ACTION BUTTONS (DOCK) -->
+  <div class="floating-dock">
+    <button class="float-btn music-btn" id="btnMusic" title="Putar / Jeda Musik">🎵</button>
+    <button class="float-btn" id="btnShareModal" title="Bagikan Undangan Tamu" onclick="openModal('modalShare')">📤</button>
+    <button class="float-btn" id="btnEditModal" title="Edit Data Undangan" onclick="openModal('modalEditor')">⚙️</button>
+  </div>
+
+  <!-- ========================================================
+       COVER PEMBUKA (PINTU GERBANG GUNUNGAN)
+       ======================================================== -->
+  <div class="opening-cover" id="openingCover">
+    <div class="cover-content">
+      <!-- Gunungan Wayang SVG -->
+      <div class="gunungan-svg-container">
+        <img src="assets/gunungan.svg" alt="Gunungan Wayang" style="width: 100%; height: 100%;">
+      </div>
+
+      <div class="cover-badge">PAWIWAHAN AGENG</div>
+      <h1 class="cover-title">Serat Ulem</h1>
+      <div class="cover-subtitle" id="coverSubTitle">Ngunduh Mantu & Ijab Qabul</div>
+
+      <div class="couple-names-cover" id="coverGroomBrideNames">Arya & Sekar</div>
+
+      <!-- Guest Box -->
+      <div class="guest-box">
+        <div class="guest-intro">Katur Panjenenganipun Bpk/Ibu/Saudara/i:</div>
+        <div class="guest-name" id="guestNameCover">Bapak / Ibu / Saudara / i</div>
+        <div class="guest-note">*Nyuwun pangapunten menawi wonten kalepatan nyerat asma utawi gelar</div>
+      </div>
+
+      <button class="btn-open-envelope" id="btnOpenEnvelope" onclick="openEnvelope()">
+        <span>✉️</span>
+        <span>Buka Undangan</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       CONTAINER UNDANGAN UTAMA (MOBILE FORMAT)
+       ======================================================== -->
+  <main class="invitation-wrapper batik-pattern-overlay">
+
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+      <!-- Corner Ornaments -->
+      <img src="assets/corner.svg" class="ornament-corner ornament-top-left" alt="Ornamen">
+      <img src="assets/corner.svg" class="ornament-corner ornament-top-right" alt="Ornamen">
+
+      <div class="hero-tagline">PAWIWAHAN AGENG</div>
+      <h1 class="hero-main-title">Pernikahan Adat Jawa</h1>
+      <div class="aksara-script">ꦩꦼꦩꦪꦸ ꦲꦪꦸꦤꦶꦁ ꦧꦮꦤ</div>
+
+      <div class="hero-couple-names" id="heroGroomBrideNames">Arya & Sekar</div>
+
+      <div class="hero-date-badge">
+        <span>📅</span>
+        <span id="heroDate">Jumat Kliwon, 20 November 2026</span>
+      </div>
+
+      <!-- COUNTDOWN TIMER -->
+      <div class="countdown-container">
+        <div class="countdown-title">Menuju Hari Bahagia</div>
+        <div class="countdown-grid">
+          <div class="countdown-card">
+            <span class="countdown-num" id="daysNum">00</span>
+            <span class="countdown-label">Hari</span>
+          </div>
+          <div class="countdown-card">
+            <span class="countdown-num" id="hoursNum">00</span>
+            <span class="countdown-label">Jam</span>
+          </div>
+          <div class="countdown-card">
+            <span class="countdown-num" id="minutesNum">00</span>
+            <span class="countdown-label">Menit</span>
+          </div>
+          <div class="countdown-card">
+            <span class="countdown-num" id="secondsNum">00</span>
+            <span class="countdown-label">Detik</span>
+          </div>
+        </div>
+
+        <button class="btn-calendar" onclick="addToGoogleCalendar()">
+          <span>📅</span>
+          <span>Simpan Tanggal ke Kalender</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- KUTIPAN SAKRAL & DOA -->
+    <section class="invitation-section section-cream">
+      <div class="quote-box">
+        <div class="quote-icon-top">❝</div>
+        <p class="quote-text-jawa" id="quoteJawa">
+          Mugi Gusti Kang Maha Agung tansah paring berkah, katentreman, kaslametan, lan katresnan ingkang langgeng tumrap kaluwarga enggal punika.
+        </p>
+        <div class="quote-source-jawa" id="quoteJawaSource">- Serat Wedhatama & Pepatah Luhur Jawa -</div>
+
+        <div class="javanese-divider">
+          <div class="divider-line"></div>
+          <div class="divider-icon">⚜️</div>
+          <div class="divider-line"></div>
+        </div>
+
+        <p class="quote-text-religious" id="quoteReligious">
+          "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+        </p>
+        <div class="quote-source-religious" id="quoteReligiousSource">(QS. Ar-Rum: 21)</div>
+      </div>
+    </section>
+
+    <!-- PROFIL MEMPELAI (TEMANTEN KAKUNG & PUTRI) -->
+    <section class="invitation-section section-cream">
+      <div class="section-header">
+        <div class="section-pretitle">Kaluwarga Ageng</div>
+        <h2 class="section-main-title">Pasangan Temanten</h2>
+        <div class="section-subtitle">Nyuwun lumunturing berkah saking Gusti</div>
+      </div>
+
+      <!-- Mempelai Pria -->
+      <div class="couple-card">
+        <img src="assets/corner.svg" class="ornament-corner ornament-top-left" alt="Ornamen">
+        <img src="assets/corner.svg" class="ornament-corner ornament-top-right" alt="Ornamen">
+
+        <div class="couple-avatar-wrap">
+          <img src="" alt="Mempelai Pria" class="couple-avatar" id="groomAvatar">
+          <div class="avatar-gold-frame"></div>
+        </div>
+        <div class="couple-role">Temanten Kakung (Pengantin Pria)</div>
+        <h3 class="couple-name" id="groomFullName">Raden Arya Bagaskara, S.T.</h3>
+        <div class="couple-nickname" id="groomNickName">( Arya )</div>
+        <p class="couple-parents" id="groomParents">Putra pertama dari Bpk. Bambang Hermawan & Ibu Siti Rahayu</p>
+        <a href="#" target="_blank" class="btn-social" id="groomInstagram">
+          <span>📷</span>
+          <span>@aryabagaskara</span>
+        </a>
+      </div>
+
+      <div class="couple-separator">&</div>
+
+      <!-- Mempelai Wanita -->
+      <div class="couple-card">
+        <img src="assets/corner.svg" class="ornament-corner ornament-top-left" alt="Ornamen">
+        <img src="assets/corner.svg" class="ornament-corner ornament-top-right" alt="Ornamen">
+
+        <div class="couple-avatar-wrap">
+          <img src="" alt="Mempelai Wanita" class="couple-avatar" id="brideAvatar">
+          <div class="avatar-gold-frame"></div>
+        </div>
+        <div class="couple-role">Temanten Putri (Pengantin Wanita)</div>
+        <h3 class="couple-name" id="brideFullName">Dyah Ayu Sekar Kedaton, S.Pd.</h3>
+        <div class="couple-nickname" id="brideNickName">( Sekar )</div>
+        <p class="couple-parents" id="brideParents">Putri bungsu dari Bpk. Hartono Kusumo & Ibu Retno Wulandari</p>
+        <a href="#" target="_blank" class="btn-social" id="brideInstagram">
+          <span>📷</span>
+          <span>@sekarkedaton</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- RINCIAN ACARA (RUNDOWN IJAB & PAHARGYAN) -->
+    <section class="invitation-section section-dark">
+      <div class="section-header">
+        <div class="section-pretitle">Pawiwahan</div>
+        <h2 class="section-main-title">Rundown Adicara</h2>
+        <div class="section-subtitle">Wekdal & Papan Panggenan</div>
+      </div>
+
+      <div id="eventsContainer">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- KISAH CINTA / LINIMASA -->
+    <section class="invitation-section section-cream">
+      <div class="section-header">
+        <div class="section-pretitle">Lelampahan Tresna</div>
+        <h2 class="section-main-title">Kisah Cinta Kami</h2>
+        <div class="section-subtitle">Saka pitepangan tumuju ing palenggahan suci</div>
+      </div>
+
+      <div class="timeline-wrap" id="timelineContainer">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- GALERI FOTO PREWEDDING -->
+    <section class="invitation-section section-dark">
+      <div class="section-header">
+        <div class="section-pretitle">Pasugatan Gambar</div>
+        <h2 class="section-main-title">Galeri Kenangan</h2>
+        <div class="section-subtitle">Potret sesarengan ing busana adat Jawa</div>
+      </div>
+
+      <div class="gallery-grid" id="galleryContainer">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TANDA TRESNA (AMPLOP DIGITAL & KADO) -->
+    <section class="invitation-section section-cream">
+      <div class="section-header">
+        <div class="section-pretitle">Tandha Tresna</div>
+        <h2 class="section-main-title">Kado Pernikahan</h2>
+        <div class="section-subtitle">Amplop Digital & Titipan Doa Restu</div>
+      </div>
+
+      <p class="gift-intro">
+        Doa restu panjenengan sedaya sampun dados kado ingkang paling aji tumraping kawula sakalih. Nanging menawi kepareng maringi tanda tresna, saged lumantar rekening punika:
+      </p>
+
+      <div id="bankAccountsContainer">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div id="giftAddressContainer" class="gift-address-card">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- BUKU TAMU & RSVP (KONFIRMASI KEHADIRAN) -->
+    <section class="invitation-section section-cream">
+      <div class="section-header">
+        <div class="section-pretitle">Konfirmasi & Donga Pangestu</div>
+        <h2 class="section-main-title">Buku Tamu & RSVP</h2>
+        <div class="section-subtitle">Atur donga puji kagem calon temanten kekalih</div>
+      </div>
+
+      <div class="rsvp-form-card">
+        <form id="rsvpForm">
+          <div class="form-group">
+            <label class="form-label" for="rsvpName">Nama Panjenengan</label>
+            <input type="text" class="form-control" id="rsvpName" placeholder="Ketik nama Anda..." required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Konfirmasi Rawuh (Kehadiran)</label>
+            <div class="radio-pills">
+              <label class="radio-pill-label">
+                <input type="radio" name="rsvpStatus" value="hadir" checked>
+                <span>Insya Allah Hadir</span>
+              </label>
+              <label class="radio-pill-label">
+                <input type="radio" name="rsvpStatus" value="tidak">
+                <span>Nyuwun Pangapunten</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="rsvpCount">Jumlah Tamu</label>
+            <select class="form-control" id="rsvpCount">
+              <option value="1">1 Orang</option>
+              <option value="2" selected>2 Orang</option>
+              <option value="3">3 Orang</option>
+              <option value="4">4 Orang atau Lebih</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="rsvpMessage">Atur Doa & Pangestu</label>
+            <textarea class="form-control" id="rsvpMessage" rows="3" placeholder="Tuliskan ucapan dan doa restu panjenengan..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit-rsvp">
+            <span>Kirim Doa Restu</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- DAFTAR DOA DARI TAMU -->
+      <div class="wishes-list" id="wishesList">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <footer class="closing-section">
+      <div class="gunungan-svg-container" style="width: 80px; height: 120px; opacity: 0.6; margin-bottom: 20px;">
+        <img src="assets/gunungan.svg" alt="Gunungan">
+      </div>
+
+      <p class="closing-text">
+        Matur nuwun sanget awit saking sih kawigatosan saha pandonga panjenengan sedaya. Mugi Gusti Kang Murbeng Dumadi tansah maringi wilujeng lan karahayuan kagem panjenengan sakaluwarga.
+      </p>
+
+      <div class="closing-family">Salam Taklim saking Kawula Sakaluwarga:</div>
+      <div class="closing-signature" id="closingCoupleNames">Arya & Sekar</div>
+      <div style="font-size: 11px; color: #7d6e64; margin-top: 24px;">Pawiwahan Ageng Adat Jawa © 2026</div>
+    </footer>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL 1: GENERATOR TAUTAN TAMU & WHATSAPP
+       (Fitur: Bisa dibagikan sesuai dengan nama penerima)
+       ======================================================== -->
+  <div class="modal-overlay" id="modalShare">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>📤</span>
+          <span>Bagikan Undangan Berdasarkan Nama</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modalShare')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p style="font-size: 12.5px; color: #5a4b41; margin-bottom: 16px;">
+          Ketik nama tamu untuk membuat tautan undangan khusus. Nama tamu akan langsung tampil secara personal di sampul undangan!
+        </p>
+
+        <!-- FORM BUAT TAUTAN PERSONAL -->
+        <div class="form-group">
+          <label class="form-label" for="shareGreetingSelect">Sapaan Hormat</label>
+          <select class="form-control" id="shareGreetingSelect">
+            <option value="Bapak/Ibu/Saudara/i" selected>Bapak/Ibu/Saudara/i</option>
+            <option value="Bapak">Bapak</option>
+            <option value="Ibu">Ibu</option>
+            <option value="Keluarga Besar">Keluarga Besar</option>
+            <option value="Sahabat">Sahabat</option>
+            <option value="Keluarga">Keluarga</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="shareGuestName">Nama Lengkap / Panggilan Tamu</label>
+          <input type="text" class="form-control" id="shareGuestName" placeholder="Contoh: Bpk. Joko Widodo & Keluarga" value="Bpk. Suparman & Keluarga">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="shareGuestPhone">Nomor WhatsApp Tamu (Opsional)</label>
+          <input type="tel" class="form-control" id="shareGuestPhone" placeholder="Contoh: 08123456789 (bisa dikosongkan)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Tautan Undangan Khusus</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" class="form-control" id="shareGeneratedLink" readonly style="background: #f4eee2; font-family: monospace; font-size: 12px;">
+            <button class="btn-copy" onclick="copyText(document.getElementById('shareGeneratedLink').value, 'Tautan undangan tamu berhasil disalin!')">
+              Salin Link
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Draf Pesan WhatsApp Otomatis</label>
+          <textarea class="form-control" id="shareMessagePreview" rows="4" readonly style="background: #fdfaf5; font-size: 12px;"></textarea>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-top: 12px;">
+          <button class="btn-primary" id="btnSendWhatsapp" style="flex: 1; background: #25D366; border-color: #25D366; color: #fff;">
+            <span>💬 Kirim via WhatsApp</span>
+          </button>
+          <button class="btn-secondary" onclick="window.open(document.getElementById('shareGeneratedLink').value, '_blank')" style="flex: 1;">
+            <span>👀 Pratinjau Tautan</span>
+          </button>
+        </div>
+
+        <!-- GENERATOR MASSAL (BATCH) ACCORDION -->
+        <hr style="border: 0; border-top: 1px dashed #dcd1c2; margin: 24px 0 16px;">
+        <details>
+          <summary style="font-size: 13px; font-weight: 700; color: #8c6721; cursor: pointer; padding: 4px 0;">
+            📑 Buat Banyak Tautan Sekaligus (Batch Generator)
+          </summary>
+          <div style="margin-top: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="batchGreetingSelect">Sapaan untuk Semua</label>
+              <select class="form-control" id="batchGreetingSelect">
+                <option value="Bapak/Ibu/Saudara/i" selected>Bapak/Ibu/Saudara/i</option>
+                <option value="Keluarga Besar">Keluarga Besar</option>
+                <option value="Sahabat">Sahabat</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="batchGuestNames">Daftar Nama Tamu (Satu Nama Tiap Baris):</label>
+              <textarea class="form-control" id="batchGuestNames" rows="4" placeholder="Bpk. Suparman&#10;Ibu Siti Rahmawati&#10;Mas Dimas & Mbak Dinda&#10;Keluarga H. Mulyono"></textarea>
+            </div>
+            <button class="btn-primary" style="width: 100%; margin-bottom: 12px;" onclick="generateBatchGuestLinks()">
+              ⚡ Generate Semua Link Tamu
+            </button>
+            <div id="batchResultList" style="max-height: 200px; overflow-y: auto;"></div>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal('modalShare')">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: PANEL LIVE EDITOR UNDANGAN
+       (Fitur: Bisa diedit sepenuhnya dengan simpan & ekspor/impor)
+       ======================================================== -->
+  <div class="modal-overlay" id="modalEditor">
+    <div class="modal-container" style="max-width: 600px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>⚙️</span>
+          <span>Edit Data Undangan (Live Editor)</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('modalEditor')">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Editor Tabs -->
+        <div class="editor-tabs">
+          <button class="editor-tab-btn active" data-tab="tabMempelai">Temanten</button>
+          <button class="editor-tab-btn" data-tab="tabAcara">Adicara & Tanggal</button>
+          <button class="editor-tab-btn" data-tab="tabDoa">Kutipan & Doa</button>
+          <button class="editor-tab-btn" data-tab="tabRekening">Rekening & Kado</button>
+          <button class="editor-tab-btn" data-tab="tabMedia">Musik & Galeri</button>
+        </div>
+
+        <!-- TAB 1: MEMPELAI -->
+        <div class="editor-tab-panel active" id="tabMempelai">
+          <h4 style="color:#8c6721; margin-bottom:10px; font-size:14px;">🤵 Pengantin Pria (Temanten Kakung)</h4>
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap & Gelar</label>
+            <input type="text" class="form-control" id="editGroomFullName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nama Panggilan</label>
+            <input type="text" class="form-control" id="editGroomNickName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Keterangan Orang Tua</label>
+            <input type="text" class="form-control" id="editGroomParents">
+          </div>
+          <div class="form-group">
+            <label class="form-label">URL Foto / Avatar</label>
+            <input type="text" class="form-control" id="editGroomAvatar">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Username Instagram (tanpa @)</label>
+            <input type="text" class="form-control" id="editGroomInstagram">
+          </div>
+
+          <h4 style="color:#8c6721; margin:16px 0 10px; font-size:14px;">👰 Pengantin Wanita (Temanten Putri)</h4>
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap & Gelar</label>
+            <input type="text" class="form-control" id="editBrideFullName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nama Panggilan</label>
+            <input type="text" class="form-control" id="editBrideNickName">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Keterangan Orang Tua</label>
+            <input type="text" class="form-control" id="editBrideParents">
+          </div>
+          <div class="form-group">
+            <label class="form-label">URL Foto / Avatar</label>
+            <input type="text" class="form-control" id="editBrideAvatar">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Username Instagram (tanpa @)</label>
+            <input type="text" class="form-control" id="editBrideInstagram">
+          </div>
+        </div>
+
+        <!-- TAB 2: ACARA & TANGGAL -->
+        <div class="editor-tab-panel" id="tabAcara">
+          <h4 style="color:#8c6721; margin-bottom:10px; font-size:14px;">📅 Informasi Acara Pokok</h4>
+          <div class="form-group">
+            <label class="form-label">Judul Utama</label>
+            <input type="text" class="form-control" id="editWeddingTitle">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subjudul Acara</label>
+            <input type="text" class="form-control" id="editWeddingSubTitle">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tanggal Waktu Acara (Untuk Countdown Timer)</label>
+            <input type="datetime-local" class="form-control" id="editWeddingIsoDate">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Format Tanggal Teks (Misal: Jumat Kliwon, 20 November 2026)</label>
+            <input type="text" class="form-control" id="editWeddindDateFormatted">
+          </div>
+
+          <h4 style="color:#8c6721; margin:16px 0 10px; font-size:14px;">💍 Akad Nikah / Ijab Qabul</h4>
+          <div class="form-group">
+            <label class="form-label">Judul Sesi</label>
+            <input type="text" class="form-control" id="editAkadTitle">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tanggal</label>
+            <input type="text" class="form-control" id="editAkadDate">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Waktu</label>
+            <input type="text" class="form-control" id="editAkadTime">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tempat / Gedung</label>
+            <input type="text" class="form-control" id="editAkadVenue">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alamat Lengkap</label>
+            <textarea class="form-control" id="editAkadAddress" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Link Google Maps</label>
+            <input type="text" class="form-control" id="editAkadMaps">
+          </div>
+
+          <h4 style="color:#8c6721; margin:16px 0 10px; font-size:14px;">🎉 Resepsi & Pahargyan</h4>
+          <div class="form-group">
+            <label class="form-label">Judul Sesi</label>
+            <input type="text" class="form-control" id="editResepsiTitle">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tanggal</label>
+            <input type="text" class="form-control" id="editResepsiDate">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Waktu</label>
+            <input type="text" class="form-control" id="editResepsiTime">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tempat / Gedung</label>
+            <input type="text" class="form-control" id="editResepsiVenue">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alamat Lengkap</label>
+            <textarea class="form-control" id="editResepsiAddress" rows="2"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Link Google Maps</label>
+            <input type="text" class="form-control" id="editResepsiMaps">
+          </div>
+        </div>
+
+        <!-- TAB 3: DOA & KUTIPAN -->
+        <div class="editor-tab-panel" id="tabDoa">
+          <h4 style="color:#8c6721; margin-bottom:10px; font-size:14px;">📜 Kutipan Adat / Pepatah Jawa</h4>
+          <div class="form-group">
+            <label class="form-label">Teks Kutipan Jawa</label>
+            <textarea class="form-control" id="editQuoteJawa" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sumber Kutipan Jawa</label>
+            <input type="text" class="form-control" id="editQuoteJawaSource">
+          </div>
+
+          <h4 style="color:#8c6721; margin:16px 0 10px; font-size:14px;">📖 Ayat Suci / Doa Agama</h4>
+          <div class="form-group">
+            <label class="form-label">Teks Ayat / Doa</label>
+            <textarea class="form-control" id="editQuoteReligious" rows="4"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Sumber Ayat / Doa</label>
+            <input type="text" class="form-control" id="editQuoteReligiousSource">
+          </div>
+        </div>
+
+        <!-- TAB 4: REKENING & KADO -->
+        <div class="editor-tab-panel" id="tabRekening">
+          <h4 style="color:#8c6721; margin-bottom:10px; font-size:14px;">💳 Rekening Bank 1</h4>
+          <div class="form-group">
+            <label class="form-label">Nama Bank</label>
+            <input type="text" class="form-control" id="editBank1Name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nomor Rekening</label>
+            <input type="text" class="form-control" id="editBank1Number">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Atas Nama</label>
+            <input type="text" class="form-control" id="editBank1Holder">
+          </div>
+
+          <h4 style="color:#8c6721; margin:16px 0 10px; font-size:14px;">💳 Rekening Bank 2</h4>
+          <div class="form-group">
+            <label class="form-label">Nama Bank</label>
+            <input type="text" class="form-control" id="editBank2Name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nomor Rekening</label>
+            <input type="text" class="form-control" id="editBank2Number">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Atas Nama</label>
+            <input type="text" class="form-control" id="editBank2Holder">
+          </div>
+
+          <h4 style="color:#8c6721; margin:16px 0 10px; font-size:14px;">📦 Alamat Kirim Kado Fisik</h4>
+          <div class="form-group">
+            <label class="form-label">Penerima</label>
+            <input type="text" class="form-control" id="editGiftRecipient">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nomor Telepon</label>
+            <input type="text" class="form-control" id="editGiftPhone">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Alamat Lengkap</label>
+            <textarea class="form-control" id="editGiftAddress" rows="2"></textarea>
+          </div>
+        </div>
+
+        <!-- TAB 5: MEDIA & GALERI -->
+        <div class="editor-tab-panel" id="tabMedia">
+          <h4 style="color:#8c6721; margin-bottom:10px; font-size:14px;">🎵 Musik Latar Gamelan</h4>
+          <div class="form-group">
+            <label class="form-label">Judul Lagu</label>
+            <input type="text" class="form-control" id="editMusicTitle">
+          </div>
+          <div class="form-group">
+            <label class="form-label">URL Audio (MP3)</label>
+            <input type="text" class="form-control" id="editMusicUrl">
+          </div>
+
+          <h4 style="color:#8c6721; margin:16px 0 10px; font-size:14px;">🖼️ Galeri Foto Prewedding</h4>
+          <div class="form-group">
+            <label class="form-label">URL Foto (Satu URL per Baris):</label>
+            <textarea class="form-control" id="editGalleryUrls" rows="6"></textarea>
+          </div>
+        </div>
+
+        <!-- EKSPOR & IMPOR FILE JSON -->
+        <div style="background: #f7f3ea; border-radius: 8px; padding: 12px; margin-top: 16px;">
+          <div style="font-size: 12px; font-weight: 700; color: #8c6721; margin-bottom: 8px;">Backup & Transfer Data:</div>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn-secondary" style="flex: 1; font-size: 11px;" onclick="exportDataToJson()">
+              📥 Download Backup (.JSON)
+            </button>
+            <label class="btn-secondary" style="flex: 1; font-size: 11px; text-align: center; cursor: pointer;">
+              📤 Upload (.JSON)
+              <input type="file" accept=".json" style="display: none;" onchange="importDataFromJson(event)">
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" style="color: #c62828;" onclick="handleResetData()">Reset Bawaan</button>
+        <button class="btn-primary" onclick="saveEditorChanges()">💾 Simpan Perubahan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div style="text-align: center; max-width: 90%;">
+      <img src="" alt="Pratinjau" class="lightbox-img" id="lightboxImg">
+      <div id="lightboxCaption" style="color: #fff; margin-top: 12px; font-size: 14px;"></div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTICE -->
+  <div class="toast-notice" id="toastNotice">Pemberitahuan</div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/editor.js"></script>
+
+</body>
+</html>
