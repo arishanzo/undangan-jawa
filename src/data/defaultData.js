@@ -158,14 +158,14 @@ export const DEFAULT_WISHES = [
     id: "w-2",
     name: "Keluarga Besar H. Mangunwijaya",
     status: "hadir",
-    message: "Selamat menempuh hidup baru Mas Arya & Mbak Sekar. Semoga Allah meridhoi dan memberkahi rumah tangga kalian.",
+    message: "Selamat menempuh hidup baru Mas Idin & Mbak Fitra. Semoga Allah meridhoi dan memberkahi rumah tangga kalian.",
     date: "3 jam lalu"
   },
   {
     id: "w-3",
     name: "Dimas & Dinda",
     status: "hadir",
-    message: "Selamat ya Arya & Sekar! Semoga lancar acaranya dan bahagia selalu dunia akhirat!",
+    message: "Selamat ya Idin & Fitra! Semoga lancar acaranya dan bahagia selalu dunia akhirat!",
     date: "Kemarin"
   }
 ];
