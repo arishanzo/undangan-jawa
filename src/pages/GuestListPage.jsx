@@ -23,7 +23,7 @@ export default function GuestListPage() {
   };
 
   const getGuestUrl = (guestName) =>
-    `${window.location.origin}/?to=${encodeURIComponent(guestName.trim())}`;
+    `${window.location.origin}/undanganidindanfitra?to=${encodeURIComponent(guestName.trim())}`;
 
   const getWhatsAppMessage = (guest) => {
     const link = getGuestUrl(guest.name);
