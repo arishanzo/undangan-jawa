@@ -44,6 +44,7 @@
           stroke-dasharray="4,2" />
 
     <!-- Central Sacred Tree of Life (Pohon Hayat) -->
+    <!-- Trunk -->
     <path d="M 97,280 L 97,120 Q 97,110 100,90 Q 103,110 103,120 L 103,280 Z" 
           fill="url(#goldGrad)" />
     
@@ -66,6 +67,7 @@
     <!-- Sacred Gate / Gapura Paduraksa at bottom -->
     <path d="M 75,280 L 75,230 L 85,220 L 100,205 L 115,220 L 125,230 L 125,280 Z" 
           fill="#1e1510" stroke="url(#goldGrad)" stroke-width="2"/>
+    <!-- Gate Door dividing line -->
     <line x1="100" y1="210" x2="100" y2="280" stroke="url(#goldGrad)" stroke-width="1.5"/>
     <circle cx="94" cy="245" r="2" fill="url(#goldGrad)"/>
     <circle cx="106" cy="245" r="2" fill="url(#goldGrad)"/>
